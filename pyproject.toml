@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "benchcae"
+version = "0.1.0"
+description = "Numerical, artifact-based evaluation of CAE agents"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+dependencies = [
+  "numpy==2.2.6", "scipy==1.15.3", "matplotlib==3.10.3",
+  "ezdxf==1.4.2", "PyYAML==6.0.2", "Pillow==11.2.1",
+]
+
+[project.optional-dependencies]
+dev = ["pytest==8.4.1"]
+
+[project.scripts]
+benchcae = "benchcae_core.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["benchcae_core*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests", "tasks/fracture/case_001/tests"]
+addopts = "-ra"

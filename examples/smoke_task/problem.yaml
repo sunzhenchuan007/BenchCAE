@@ -1,0 +1,32 @@
+schema_version: 1
+id: synthetic/interface_smoke
+title: Synthetic interface fixture, NOT a fracture problem
+data_kind: synthetic
+status: synthetic_only
+required_fields: []
+geometry:
+  primary: input/fracture_2.dxf
+  variants:
+    - path: input/fracture_2.dxf
+      role: visual overlay only; not simulated
+  length_unit: unconfirmed_CAD_unit
+outputs:
+  - id: reaction_curve
+    type: reaction_curve
+    csv: reaction_curve.csv
+    png: reaction_curve.png
+    columns: [step, segment, displacement, reaction]
+    numeric_columns: [step, segment, displacement, reaction]
+  - id: crack_path
+    type: crack_path
+    csv: crack_path.csv
+    png: crack_path.png
+    columns: [path_id, kind, point_index, step, x, y]
+    numeric_columns: [point_index, step, x, y]
+runner:
+  timeout_seconds: 60
+  cpus: 1
+  memory: 1g
+  image: benchcae-agent:0.1
+verifier:
+  status: not_configured

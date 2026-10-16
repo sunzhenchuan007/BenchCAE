@@ -1,0 +1,62 @@
+schema_version: 1
+id: fracture/case_001
+title: Notched planar specimen with three circular boundaries
+data_kind: real
+status: blocked_missing_physics
+required_fields:
+  - physics.length_unit
+  - physics.dimensional_assumption
+  - physics.thickness
+  - physics.material
+  - physics.boundary_conditions
+  - physics.loading_history
+  - physics.initial_crack
+  - physics.fracture_law
+  - physics.reaction_definition
+  - physics.crack_extraction
+  - physics.convergence
+geometry:
+  primary: input/fracture_2.dxf
+  variants:
+    - path: input/fracture_1.dxf
+      role: internal partitions for mesh refinement; not physical cracks
+    - path: input/fracture_2.dxf
+      role: unpartitioned geometry
+  frame: original DXF XY; no translation, rotation or rescaling inferred
+  length_unit: null
+physics:
+  length_unit: null
+  dimensional_assumption: null
+  thickness: null
+  material: null
+  boundary_conditions: null
+  loading_history: null
+  initial_crack: null
+  fracture_law: null
+  reaction_definition: null
+  crack_extraction: null
+  convergence: null
+outputs:
+  - id: reaction_curve
+    type: reaction_curve
+    csv: reaction_curve.csv
+    png: reaction_curve.png
+    columns: [step, segment, displacement, reaction]
+    numeric_columns: [step, segment, displacement, reaction]
+  - id: crack_path
+    type: crack_path
+    csv: crack_path.csv
+    png: crack_path.png
+    columns: [path_id, kind, point_index, step, x, y]
+    numeric_columns: [point_index, step, x, y]
+verifier:
+  entry: verifier/verify.py
+  status: not_configured
+runner:
+  timeout_seconds: 120
+  cpus: 2
+  memory: 2g
+  image: benchcae-agent:0.1
+ground_truth:
+  status: not_supplied
+  reference_id: null

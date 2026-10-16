@@ -1,0 +1,7 @@
+*
+!tasks/
+!tasks/fracture/
+!tasks/fracture/case_001/
+!tasks/fracture/case_001/environment/
+!tasks/fracture/case_001/environment/Dockerfile
+!tasks/fracture/case_001/environment/requirements.txt

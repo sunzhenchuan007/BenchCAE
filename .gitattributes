@@ -1,0 +1,5 @@
+* text=auto eol=lf
+# Preserve supplied CAD bytes and hashes on every operating system.
+*.dxf -text
+*.step -text
+*.stp -text
